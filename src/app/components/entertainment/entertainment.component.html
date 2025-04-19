@@ -1,0 +1,47 @@
+
+<h1 class="main-header">search in our library </h1>
+<div class="search-container">
+  <input type="search" [(ngModel)]="searchQuery" placeholder="Search here..." (input)="onSearch()">
+  <button class="search-button" (click)="search(searchQuery,null,selectedTags)">
+    search🔍
+  </button>
+</div>
+
+<div class="line" [style.width]="linewidth"></div>
+
+
+<div class="input-group" style="margin-top: 20px;">
+  <label for="tags" style="text-align: center;">Tags</label>
+  <div class="tags-container">
+    <div *ngFor="let tag of availableTags" class="tag-option">
+      <input
+        type="checkbox"
+        [id]="tag.id"
+        [value]="tag.id"
+        (change)="onTagChange($event, tag.id)"
+      />
+      <label [for]="tag.id">{{ tag.name }}</label>
+    </div>
+  </div>
+</div>
+
+
+@if(!loader){
+  <div class="row">
+
+    @for( audio of allaudios ; track $index){
+      <div class="col">
+        <h4 class="box-title">{{audio.title}}</h4>
+        <p class="box-description">{{audio.description}}</p>
+        <audio [src]="audio.url" controls></audio>
+      </div>
+    }
+    </div>
+}
+@else {
+<div style="text-align: center;"><i class="fa fa-spinner fa-spin" style="font-size: 70px;"></i></div>
+}
+
+
+<!-- font awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">

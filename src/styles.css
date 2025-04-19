@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+
+body {
+  background: #0f2027;
+  background: linear-gradient(to right, #2c5364, #203a43, #203a43);
+  position: relative;
+  color: #fff;
+}
+
+/* Floating bubbles */
+
+

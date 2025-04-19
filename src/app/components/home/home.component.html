@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+<h1 class="main-header">search in our library </h1>
+<div class="search-container">
+  <input type="search" [(ngModel)]="searchQuery" placeholder="Search here..." (input)="onSearch()">
+  <button class="search-button" (click)="search(searchQuery,null,selectedTags)">
+    search🔍
+  </button>
+</div>
+
+
+
+<div class="line" [style.width]="linewidth"></div>
+
+<div class="input-group" style="margin-top: 20px;">
+  <label for="tags" style="text-align: center;">Tags</label>
+  <div class="tags-container">
+    <div *ngFor="let tag of availableTags" class="tag-option">
+      <input
+        type="checkbox"
+        [id]="tag.id"
+        [value]="tag.id"
+        (change)="onTagChange($event, tag.id)"
+      />
+      <label [for]="tag.id">{{ tag.name }}</label>
+    </div>
+  </div>
+</div>
+
+@if(!loader){
+  <div class="row">
+
+    @for( audio of allaudios ; track $index){
+      <div class="col">
+        <h4 class="box-title">{{audio.title}}</h4>
+        <p class="box-description">{{audio.description}}</p>
+        <audio [src]="audio.url" controls></audio>
+      </div>
+    }
+    </div>
+}
+@else {
+<div style="text-align: center;"><i class="fa fa-spinner fa-spin" style="font-size: 70px;"></i></div>
+}
+
+
+
+
+<h1 class="main-header">discover our Category </h1>
+
+<div class="our-catigories">
+  <div class="cat-1" routerLink="/podcasts">
+    <i class="fa fa-laptop fa-3x"></i>
+    <h3>Tecnologies</h3>
+  </div>
+  <div class="cat-1" routerLink="/audiobooks">
+    <i class="fa fa-tv fa-3x"></i>
+    <h3>audiobooks</h3>
+  </div>
+  <div class="cat-1" routerLink="/music">
+    <i class="fa fa-cogs fa-3x"></i>
+    <h3>music</h3>
+  </div>
+  <div class="cat-1" routerLink="/quran">
+    <i class="fa fa-medkit fa-3x"></i>
+    <h3>quran</h3>
+  </div>
+</div>
+
+<div class="uploade" routerLink="/uploade">uploade new audio</div>
+
+<!-- font awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+

@@ -1,0 +1,68 @@
+<h1 class="upload-header">Upload Your Audio File</h1>
+
+<div class="upload-container">
+  <div class="input-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      [(ngModel)]="title"
+      placeholder="Enter title"
+    />
+  </div>
+
+  <div class="input-group">
+    <label for="description">Description</label>
+    <input
+      type="text"
+      id="description"
+      [(ngModel)]="description"
+      placeholder="Enter description"
+    />
+  </div>
+
+  <div class="input-group">
+    <label for="tags" style="text-align: center;">Tags</label>
+    <div class="tags-container">
+      <div *ngFor="let tag of availableTags" class="tag-option">
+        <input
+          type="checkbox"
+          [id]="tag.id"
+          [value]="tag.id"
+          (change)="onTagChange($event, tag.id)"
+        />
+        <label [for]="tag.id">{{ tag.name }}</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="select-container">
+    <label for="category">Choose a Category:</label>
+    <select  id="category"  [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+      <option  *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+
+  <div class="input-group">
+    <label for="audioFile">Audio File</label>
+    <input type="file" id="audioFile" (change)="handleAudioFile($event)" />
+  </div>
+
+  <button class="upload-btn" (click)="uploadAudio()">Send Audio @if(loader){<i class="fa fa-spinner fa-spin"></i>  }</button>
+  <button class="upload-btn" routerLink="/home" style="margin-left: 5px">
+    back
+  </button>
+</div>
+
+<div id="context" *ngIf="audios.length > 0" class="audio-gallery">
+  <div *ngFor="let audio of audios" class="audio-item">
+    <p>{{ audio.title }}</p>
+    <audio [src]="audio.audio" controls></audio>
+  </div>
+</div>
+
+
+
+<!-- font awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">

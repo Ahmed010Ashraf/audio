@@ -11,15 +11,15 @@ export class AudioService {
   constructor(private http:HttpClient) { }
 
   uploadAudio(formData:FormData):Observable<any>{
-    return this.http.post(`http://audioretrievalapi.runasp.net/api/audio`,formData)
+    return this.http.post(`https://audioretrievalapi.runasp.net/api/audio`,formData)
   }
 
   getAllAudio():Observable<any>{
-    return this.http.get("http://audioretrievalapi.runasp.net/api/audio")
+    return this.http.get("https://audioretrievalapi.runasp.net/api/audio")
   }
 
 
   search(params : HttpParams):Observable<any>{
-    return this.http.get("http://audioretrievalapi.runasp.net/api/audio/search" , {params})
+    return this.http.get("https://audioretrievalapi.runasp.net/api/audio/search" , {params})
   }
 }
